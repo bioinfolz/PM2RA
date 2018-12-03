@@ -21,7 +21,8 @@ R 3.5.1(Other version not tested)<br>
 R packages:<br>
 gtools,MASS,sfsmisc,pracma,DMwR,qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2.<br>
 
-##USAGE
+##USAGE<br>
+
 This PM2CA script is developed with two functional modules.<br>
 1. 2D scanning(2DScan):  scanning for pairwise association change among the microbiome community between two conditions, and the two-component community alterations form a community alteration(CA) network, where the nodes represent microbiota and the edges represent the measure of the community alteration (or association changes) of the two connected microbiota by PM score. Hub microbiotas in the CA network are the ones with extensively altered associations between two compared conditions.<br>
 
@@ -29,7 +30,7 @@ This PM2CA script is developed with two functional modules.<br>
 
 #2DScan usage<br>
 Six parameters should be set for 2DScan function<br>
-Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan<br>
+'Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan'<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
 H	1.64E-05	0.000212566	0.318188189	0.005378391<br>
