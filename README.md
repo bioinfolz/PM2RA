@@ -17,9 +17,9 @@ Licensed under the GNU Affero General Public License version 3 or later<br>
 
 DEPENDENCIES
 ===
-R 3.5.1(Other version not tested)<br>
+R 3.5.1 *(Other version not tested)*<br>
 R packages:<br>
-gtools,MASS,sfsmisc,pracma,DMwR,qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2.<br>
+*gtools,MASS,sfsmisc,pracma,DMwR,qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2.<br>
 
 USAGE<br>
 -----
