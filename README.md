@@ -60,7 +60,7 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 `Rscript PM2CA.R Example.csv H D 0.1 2DscanExample 2DScan`<br>
 
 
-MultiSearch Usase<br>
+MultiSearch usage<br>
 -----
 
 **Seven** parameters should be set for MultiSearch function. Except for those set for 2DScan, a microbiota list should be provided for MultiSearch.<br>
