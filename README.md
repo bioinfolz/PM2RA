@@ -34,7 +34,7 @@ This PM2CA script is developed with two functional modules.<br>
 **Six** parameters should be set for 2DScan function<br>
 `Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
-**Input Example:<br>
+**Input Example:**<br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
 H	1.64E-05	0.000212566	0.318188189	0.005378391<br>
 H	0.000106283	0.001448253	0.142495246	0.011803262<br>
@@ -47,7 +47,7 @@ D	0.00030133	0.001388688	0.019018832	0.010586262<br>
 D	0.000416957	0.000828074	0.045962177	0.043511827<br>
 D	0.000153001	0.001358321	0.042005176	0.030979767<br>
 D	0.00013665	0.003584426	0.032091651	0.039965943<br>
-D	0.000140154	0.000798875	0.041534494	0.01880393**<br>
+D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 
 2.  ConditionA-Label: label for samples from conditionA(e.g. H,disease,A)<br>
 3.  ConditionB-Label: label for samples from conditionB(e.g. D,control,B)<br>
@@ -66,7 +66,7 @@ MultiSearch Usase<br>
 
 `Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name MultiSearch micriobita.list`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
-**Input Example:<br>
+**Input Example:**<br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
 H	1.64E-05	0.000212566	0.318188189	0.005378391<br>
 H	0.000106283	0.001448253	0.142495246	0.011803262<br>
@@ -79,7 +79,7 @@ D	0.00030133	0.001388688	0.019018832	0.010586262<br>
 D	0.000416957	0.000828074	0.045962177	0.043511827<br>
 D	0.000153001	0.001358321	0.042005176	0.030979767<br>
 D	0.00013665	0.003584426	0.032091651	0.039965943<br>
-D	0.000140154	0.000798875	0.041534494	0.01880393**<br>
+D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 
 2.  ConditionA-Label: label for samples from conditionA(e.g. H,disease,A)<br>
 3.  ConditionB-Label: label for samples from conditionB(e.g. D,control,B)<br>
