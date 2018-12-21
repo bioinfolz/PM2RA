@@ -1,5 +1,5 @@
 # PM2CA
-Profile Monitoring for Microbiome Community Alteration
+Profile Monitoring for Microbial Community Alteration
 
 Version 1.0
 
@@ -24,7 +24,7 @@ R packages:<br>
 USAGE<br>
 -----
 This PM2CA script is developed with two functional modules.<br>
-1. 2D scanning(2DScan):  scanning for pairwise association change among the microbiome community between two conditions, and the two-component community alterations form a community alteration(CA) network, where the nodes represent microbiota and the edges represent the measure of the community alteration (or association changes) of the two connected microbiota by PM score. Hub microbiotas in the CA network are the ones with extensively altered associations between two compared conditions.<br>
+1. 2D scanning(2DScan):  scanning for pairwise association change among the microbial community between two conditions, and the two-component community alterations form a community alteration(CA) network, where the nodes represent microbiota and the edges represent the measure of the community alteration (or association changes) of the two connected microbiota by PM score. Hub microbiotas in the CA network are the ones with extensively altered associations between two compared conditions.<br>
 
 2. Multiple-dimensional search(MultiSearch):  where the PM score of any defined sub-community with two or more microbiotas could be calculated.<br>
 
