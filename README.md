@@ -1,9 +1,9 @@
 # PM2CA
 Profile Monitoring for Microbial Community Alteration
 
-Version 1.0
+Version 1.02
 
-Updated date: 2018.12.03
+Updated date: 2019.06.17
 
 Cite us:
 
@@ -55,9 +55,10 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 4.  prevalence filter: remove microbiotas with prevalence less than the prevalence filter(e.g. 0.1)<br>
 5.  project.name: prefix attached to results files<br>
 6.  function type: 2DScan<br>
+7.  Statistic method: Kolmogorov-Smirnov test(ks,default) or Wilcoxon rank-sum test(wc)
 
 **Run Example**<br>
-`Rscript PM2CA.R Example.csv H D 0.1 2DscanExample 2DScan`<br>
+`Rscript PM2CA.R Example.csv H D 0.1 2DscanExample 2DScan ks`<br>
 
 
 MultiSearch usage<br>
@@ -65,7 +66,7 @@ MultiSearch usage<br>
 
 **Seven** parameters should be set for MultiSearch function. Except for those set for 2DScan, a microbiota list should be provided for MultiSearch.<br>
 
-`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name MultiSearch micriobita.list`<br>
+`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name MultiSearch ks micriobita.list`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
 **Input Example:**<br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
@@ -87,9 +88,10 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 4.  prevalence filter: remove microbiotas with prevalence less than the prevalence filter(e.g. 0.1)<br>
 5.  project.name: prefix attached to results files<br>
 6.  function type: MultiSearch<br>
-7.  microbita.list: a plain text file provides a list of micriobita，where each line contains one microbiota.<br>
+7.  Statistic method: Kolmogorov-Smirnov test(ks,default) or Wilcoxon rank-sum test(wc)
+8.  microbita.list: a plain text file provides a list of micriobita，where each line contains one microbiota.<br>
 
 **Run Example**<br>
-`Rscript PM2CA.R Example.csv H D 0.1 MultiSearchExample MultiSearch list.txt`<br>
+`Rscript PM2CA.R Example.csv H D 0.1 MultiSearchExample MultiSearch ks list.txt`<br>
 
 
