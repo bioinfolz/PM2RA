@@ -1,7 +1,7 @@
 # PM2CA
 Profile Monitoring for Microbial Community Alteration
 
-Version 1.02
+Version 1.0.2
 
 Updated date: 2019.06.17
 
