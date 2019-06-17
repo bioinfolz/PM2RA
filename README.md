@@ -95,3 +95,7 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 `Rscript PM2CA.R Example.csv H D 0.1 MultiSearchExample MultiSearch ks list.txt`<br>
 
 
+# RELEASE NOTES
+v1.0.2, 2019.04.01, adding Wilcoxon rank-sum test as an alternative test.
+v1.0.0, 2018.12.01
+
