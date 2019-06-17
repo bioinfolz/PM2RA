@@ -26,7 +26,7 @@ if(length(ind)<2){
 	tdata<<-tdata[,ind]
 	n<<-length(colnames(tdata))
 	if(type=="MultiSearch"){
-		listfile<-args[7]
+		listfile<-args[8]
 		microbe<<-as.character(read.table(file=listfile)$V1)
 		tdata<<-tdata[,colnames(tdata)%in% microbe]
 		M<<-length(microbe)
