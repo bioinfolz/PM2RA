@@ -31,8 +31,8 @@ This PM2CA script is developed with two functional modules.<br>
 2DScan usage<br>
 -----
 
-**Six** parameters should be set for 2DScan function<br>
-`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan`<br>
+**Seven** parameters should be set for 2DScan function<br>
+`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan Test-Type`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
 **Input Example:**<br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
@@ -64,9 +64,9 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 MultiSearch usage<br>
 -----
 
-**Seven** parameters should be set for MultiSearch function. Except for those set for 2DScan, a microbiota list should be provided for MultiSearch.<br>
+**Eight** parameters should be set for MultiSearch function. Except for those set for 2DScan, a microbiota list should be provided for MultiSearch.<br>
 
-`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name MultiSearch ks micriobita.list`<br>
+`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name MultiSearch Test-type micriobita.list`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
 **Input Example:**<br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
