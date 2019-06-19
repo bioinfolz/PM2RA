@@ -240,7 +240,7 @@ MSD2 <- function(W){
 		if(Test =="wc"){
 			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
 		}else{
-			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
+			pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
 		}
 	}
 	else{diffs<-NA;pval<-NA}
@@ -312,7 +312,7 @@ MSDs <- function(S){
 		if(Test =="wc"){
 			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
 		}else{
-			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
+			pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
 		}
 	}
 	else{Adiff<-NA;diffs<-NA;pval<-NA}	
