@@ -19,7 +19,7 @@ DEPENDENCIES
 ===
 R 3.5.1 *(Other version not tested)*<br>
 R packages:<br>
-*gtools,MASS,sfsmisc,pracma,DMwR,qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2,parallel.*<br>
+*gtools,MASS,sfsmisc,qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2,parallel.*<br>
 
 USAGE<br>
 -----
