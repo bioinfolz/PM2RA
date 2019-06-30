@@ -274,7 +274,7 @@ MSD1 <- function(Z){
 		if(Test =="wc"){
 			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
 		}else{
-			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
+			pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
 		}	
 	}
 	else{diffs<-NA;pval<-NA}
