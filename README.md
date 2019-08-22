@@ -21,7 +21,7 @@ R 3.5.1 *(Other version not tested)*<br>
 R packages:<br>
 *gtools,MASS,sfsmisc,qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2,parallel.*<br>
 
-Script tested on Mac and Linux system.*<br>
+Script tested on Mac and Linux system.<br>
 
 USAGE<br>
 -----
