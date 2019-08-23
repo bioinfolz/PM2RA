@@ -39,7 +39,7 @@ This PM2CA script is developed with two functional modules.<br>
 `Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan Test-Type`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
 **Input Example:**<br>
-* Missing value is not allowed
+* Missing value is not allowed<br><br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
 H	1.64E-05	0.000212566	0.318188189	0.005378391<br>
 H	0.000106283	0.001448253	0.142495246	0.011803262<br>
