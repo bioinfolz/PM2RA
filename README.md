@@ -19,9 +19,11 @@ DEPENDENCIES
 ===
 R 3.5.1 *(Other version not tested)*<br>
 R packages:<br>
-*gtools,MASS,sfsmisc,qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2,parallel.*<br>
+*gtools,MASS,sfsmisc,DMwR，pracma，qcc,stringr,ggplot2,igraph,RColorBrewer,pheatmap,reshape2,parallel.*<br>
 
 Script tested on Mac and Linux system.<br>
+
+*The average computation time of PM2CA for a dataset contains 100 features is 30 minutes (running on a Linux cluster with 8 processors). 
 
 USAGE<br>
 -----
