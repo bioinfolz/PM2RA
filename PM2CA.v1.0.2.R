@@ -56,7 +56,9 @@ remove_outliers <- function(X){
 		Y<-X[-outl[cirteia]]
 			}
 		return(Y)
-	}	
+	}
+
+###calculate non-overlapped area of two probability distributions
 diffXY <- function(X,Y)
 {
 	densX<-density(X,from=0,bw=0.1)
@@ -83,27 +85,10 @@ diffXY <- function(X,Y)
 	diff=1-aera
 	return(diff)
 }
-###functions-1
 
 ###functions-figures
-plot.multi.dens.withdiff <- function(s,title)
-{
-	junk.x = NULL
-	junk.y = NULL
-	pm<-round(unlist(s[1]),2)
-	for(i in 2:length(s)) {
- 		junk.x = c(junk.x, density(s[[i]],from=0,bw=0.1)$x)
-		junk.y = c(junk.y, density(s[[i]],from=0,bw=0.1)$y)
-	}
-    xr <- range(junk.x)
-   	yr <- range(junk.y)  
-	plot(density(s[[2]],from=0), xlim = xr, ylim = yr,main=title,cex.main=0.8,xlab=NA)
-	for(i in 2:length(s)) {
-		lines(density(s[[i]],from=0), xlim = xr, ylim = yr, col = i+2,xlab=NA)
-    	}
-   	text(x = xr[2]/4*3, y = yr[2]/4*3, labels = paste("PM=",pm))
-}
 
+###set ggplot theme
 theme_zg <- function(..., bg='white'){
     require(grid)
     theme_classic(...) +
@@ -120,6 +105,7 @@ theme_zg <- function(..., bg='white'){
               legend.key=element_rect(fill='transparent', color='transparent'))
 }
 
+###plot density distribution of Hotelling’s T2 statistics for a defined microbial community
 Dens <- function(s,title)
 {
 	library(ggplot2,quietly = TRUE);library(RColorBrewer,quietly = TRUE)
@@ -133,6 +119,7 @@ Dens <- function(s,title)
 	print(p)
  }
 
+### plot CA network for significant community alterations with FDR <0.05
 Graph<-function(fa){
 	library(igraph,quietly = TRUE)
 	library(RColorBrewer,quietly = TRUE)
@@ -161,7 +148,7 @@ Graph<-function(fa){
 	}
 }
 
-
+### plot interactions within a defined module
 Module<-function(df,n){
 	library(igraph,quietly = TRUE)
 	library(RColorBrewer,quietly = TRUE)
@@ -191,8 +178,7 @@ Module<-function(df,n){
 	}
 }
 
-
-
+### plot heatmap for pairwise PM2CA  score in the 2DScaning
 heat<-function(fb){
 	library(pheatmap,quietly = TRUE)
 	library(reshape2,quietly = TRUE)
@@ -212,6 +198,7 @@ heat<-function(fb){
 ###functions-figures
 
 ###functions-main function
+### calculate 2D PM score
 MSD2 <- function(W){
 	A<-tdata[a:b,W]
 	B<-tdata[cc:d,W]
@@ -248,6 +235,7 @@ MSD2 <- function(W){
 	return (cm)
 }
 
+### calculate the 1D PM score 
 MSD1 <- function(Z){
 	A<-tdata[a:b,Z]
 	B<-tdata[cc:d,Z]
@@ -281,7 +269,8 @@ MSD1 <- function(Z){
 	cm<-paste(colnames(tdata)[Z],colnames(tdata)[Z],diffs,pval,sep="\t")
 	return (cm)
 }
-	
+
+### calculate the PM score for a defined module
 MSDs <- function(S){
 	A<-tdata[a:b,S]
 	B<-tdata[cc:d,S]
@@ -328,8 +317,8 @@ MSDs <- function(S){
 	return (res)
 }
 
-###functions-main function
 
+###functions-main function
 ###main
 if(type=="2DScan"){
 	outtable<-paste(pjname,".2Dscan.res.txt",sep="")
