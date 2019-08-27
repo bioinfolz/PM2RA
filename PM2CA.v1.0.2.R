@@ -42,7 +42,7 @@ library(gtools,quietly = TRUE)
 library(stringr,quietly = TRUE)
 library(parallel,quietly = TRUE)
 
-###functions-1
+###remove outliers
 remove_outliers <- function(X){
 	gAB<-quantile(X,probs=c(0.25,0.5,0.75))
 	upper<-gAB[2]+1.5*(gAB[3]-gAB[1])	
