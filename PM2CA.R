@@ -5,6 +5,7 @@ label2<<-args[3]
 pct<<-as.numeric(args[4])
 pjname<<-args[5]
 type<<-args[6]
+Test<<-args[7]
 
 tdata<<-read.csv(file=orifile,header=T)
 d1<-tdata[which(tdata[,1]==label1),]
@@ -25,7 +26,7 @@ if(length(ind)<2){
 	tdata<<-tdata[,ind]
 	n<<-length(colnames(tdata))
 	if(type=="MultiSearch"){
-		listfile<-args[7]
+		listfile<-args[8]
 		microbe<<-as.character(read.table(file=listfile)$V1)
 		tdata<<-tdata[,colnames(tdata)%in% microbe]
 		M<<-length(microbe)
@@ -41,7 +42,7 @@ library(gtools,quietly = TRUE)
 library(stringr,quietly = TRUE)
 library(parallel,quietly = TRUE)
 
-###functions-1
+###remove outliers
 remove_outliers <- function(X){
 	gAB<-quantile(X,probs=c(0.25,0.5,0.75))
 	upper<-gAB[2]+1.5*(gAB[3]-gAB[1])	
@@ -55,7 +56,9 @@ remove_outliers <- function(X){
 		Y<-X[-outl[cirteia]]
 			}
 		return(Y)
-	}	
+	}
+
+###calculate non-overlapped area of two probability distributions
 diffXY <- function(X,Y)
 {
 	densX<-density(X,from=0,bw=0.1)
@@ -82,27 +85,10 @@ diffXY <- function(X,Y)
 	diff=1-aera
 	return(diff)
 }
-###functions-1
 
 ###functions-figures
-plot.multi.dens.withdiff <- function(s,title)
-{
-	junk.x = NULL
-	junk.y = NULL
-	pm<-round(unlist(s[1]),2)
-	for(i in 2:length(s)) {
- 		junk.x = c(junk.x, density(s[[i]],from=0,bw=0.1)$x)
-		junk.y = c(junk.y, density(s[[i]],from=0,bw=0.1)$y)
-	}
-    xr <- range(junk.x)
-   	yr <- range(junk.y)  
-	plot(density(s[[2]],from=0), xlim = xr, ylim = yr,main=title,cex.main=0.8,xlab=NA)
-	for(i in 2:length(s)) {
-		lines(density(s[[i]],from=0), xlim = xr, ylim = yr, col = i+2,xlab=NA)
-    	}
-   	text(x = xr[2]/4*3, y = yr[2]/4*3, labels = paste("PM=",pm))
-}
 
+###set ggplot theme
 theme_zg <- function(..., bg='white'){
     require(grid)
     theme_classic(...) +
@@ -119,6 +105,7 @@ theme_zg <- function(..., bg='white'){
               legend.key=element_rect(fill='transparent', color='transparent'))
 }
 
+###plot density distribution of Hotelling’s T2 statistics for a defined microbial community
 Dens <- function(s,title)
 {
 	library(ggplot2,quietly = TRUE);library(RColorBrewer,quietly = TRUE)
@@ -132,6 +119,7 @@ Dens <- function(s,title)
 	print(p)
  }
 
+### plot CA network for significant community alterations with FDR <0.05
 Graph<-function(fa){
 	library(igraph,quietly = TRUE)
 	library(RColorBrewer,quietly = TRUE)
@@ -160,7 +148,7 @@ Graph<-function(fa){
 	}
 }
 
-
+### plot interactions within a defined module
 Module<-function(df,n){
 	library(igraph,quietly = TRUE)
 	library(RColorBrewer,quietly = TRUE)
@@ -190,8 +178,7 @@ Module<-function(df,n){
 	}
 }
 
-
-
+### plot heatmap for pairwise PM2CA  score in the 2DScaning
 heat<-function(fb){
 	library(pheatmap,quietly = TRUE)
 	library(reshape2,quietly = TRUE)
@@ -211,6 +198,7 @@ heat<-function(fb){
 ###functions-figures
 
 ###functions-main function
+### calculate 2D PM score
 MSD2 <- function(W){
 	A<-tdata[a:b,W]
 	B<-tdata[cc:d,W]
@@ -236,13 +224,18 @@ MSD2 <- function(W){
 	Bstatistics<-remove_outliers(Bstatistics)
 	if((length(Astatistics)>1)&(length(Bstatistics)>1)&(length(BAstatistics)>1)&(length(ABstatistics)>1)){
 		diffs<-max(diffXY(ABstatistics,Bstatistics),diffXY(BAstatistics,Astatistics))
-		pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
+		if(Test =="wc"){
+			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
+		}else{
+			pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
+		}
 	}
 	else{diffs<-NA;pval<-NA}
 	cm<-paste(str_c(colnames(tdata)[W],collapse='\t'),diffs,pval,sep="\t")
 	return (cm)
 }
 
+### calculate the 1D PM score 
 MSD1 <- function(Z){
 	A<-tdata[a:b,Z]
 	B<-tdata[cc:d,Z]
@@ -266,13 +259,18 @@ MSD1 <- function(Z){
 	Bstatistics<-remove_outliers(Bstatistics)
 	if((length(Astatistics)>1)&(length(Bstatistics)>1)&(length(BAstatistics)>1)&(length(ABstatistics)>1)){
 		diffs<-max(diffXY(ABstatistics,Bstatistics),diffXY(BAstatistics,Astatistics))
-		pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
+		if(Test =="wc"){
+			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
+		}else{
+			pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
+		}	
 	}
 	else{diffs<-NA;pval<-NA}
 	cm<-paste(colnames(tdata)[Z],colnames(tdata)[Z],diffs,pval,sep="\t")
 	return (cm)
 }
-	
+
+### calculate the PM score for a defined module
 MSDs <- function(S){
 	A<-tdata[a:b,S]
 	B<-tdata[cc:d,S]
@@ -300,8 +298,13 @@ MSDs <- function(S){
 		Bdiff<-diffXY(ABstatistics,Bstatistics)
 		Adiff<-diffXY(BAstatistics,Astatistics)
 		diffs<-max(Adiff,Bdiff)
-		pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
-	}else{Adiff<-NA;diffs<-NA;pval<-NA}	
+		if(Test =="wc"){
+			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
+		}else{
+			pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
+		}
+	}
+	else{Adiff<-NA;diffs<-NA;pval<-NA}	
 	pm<-paste(str_c(colnames(tdata)[S],collapse='\t'),diffs,pval,sep="\t")
 	if(diffs==Adiff){
 		Aprojection <-Astatistics
@@ -314,8 +317,8 @@ MSDs <- function(S){
 	return (res)
 }
 
-###functions-main function
 
+###functions-main function
 ###main
 if(type=="2DScan"){
 	outtable<-paste(pjname,".2Dscan.res.txt",sep="")
@@ -364,7 +367,4 @@ if(type=="2DScan"){
 	
 ###main
 	
-		
-
-
-
+	
