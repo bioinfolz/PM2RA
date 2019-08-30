@@ -23,7 +23,7 @@ R packages:<br>
 
 Script tested on Mac and Linux system.<br>
 
-*The average computation time of PM2CA for a dataset contains 100 features is 30 minutes (running on a Linux cluster with 8 processors). 
+*The average computation time of PM2CA for a dataset contains 100 features is 30 minutes (running on a Linux with 8 processors). 
 
 USAGE<br>
 -----
