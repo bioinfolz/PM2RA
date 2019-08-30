@@ -5,7 +5,7 @@ parser.add_argument('--Case', type=int, default = None)
 parser.add_argument('--Control', type=int, default=None)
 parser.add_argument('--TopN', type=int, default=10)
 parser.add_argument('--Thread', type=int, default=1)
-parser.add_argument('--Output', type=str)
+#parser.add_argument('--Output', type=str)
 
 args = parser.parse_args()
 
@@ -271,7 +271,8 @@ ctimeX<-endtimeX-starttimeX
 '''%dimx
 robjects.r(rscript_calDimX)
 
-
+#print(robjects.r['summary']('resX'))
+#print(robjects.r['ctimeX'])
 npres=np.array(robjects.r['resX'])
 npres=np.reshape(npres,newshape=(npres.shape[0],npres.shape[1]))
 npres=np.transpose(npres)
@@ -376,23 +377,19 @@ while(iterationT<thresholdN):
     else:
         topres=resTopres
 
+
 topindex=np.delete(topres,[bioN,bioN+1],axis=1)
-outfiles = args.Output
-fileTmp = open(outfiles, 'w+')
 for i in range(topres.shape[0]):
-    fileTmp.write('Module %i: \t Diff:%f \t Pvalue:%f' %(i,topres[i,bioN],topres[i, bioN+1]))
-    fileTmp.write('\n')
-    fileTmp.write('BioName:')
-    fileTmp.write('\n')
-    fileTmp.write(bioName[topindex[i,:]>0])
-    fileTmp.write('\n')
+    print('------------------------------------------')
+    print('Module %i: \t Diff:%f \t Pvalue:%f' %(i,topres[i,bioN],topres[i, bioN+1]))
+    print('BioName:')
+    print(bioName[topindex[i,:]>0])
+
     
-fileTmp.close()
 
 #print(comb)
 
 ## cal combination
-
 
 
 
