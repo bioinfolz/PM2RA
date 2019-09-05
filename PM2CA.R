@@ -204,33 +204,35 @@ MSD2 <- function(W){
 	B<-tdata[cc:d,W]
 	A<-A[which(apply(A,1,sum)>0),]
 	B<-B[which(apply(B,1,sum)>0),]
-	SA<-stats.T2.single(A)
-	SAcov<-SA$cov
-	SAcenter<-SA$center
-	Astatistics<-SA$statistics
-	SB<-stats.T2.single(B)
-	SBcov<-SB$cov
-	SBcenter<-SB$center
-	Bstatistics<-SB$statistics		
-	AB<-sweep(A,2,SBcenter, "-" )
-	AB<-as.matrix(AB)
-	ABstatistics<-diag(AB%*%solve(SBcov)%*%(t(AB)))
-	BA<-sweep(B,2,SAcenter, "-" )
-	BA<-as.matrix(BA)
-	BAstatistics<-diag(BA%*%solve(SAcov)%*%(t(BA)))
-	ABstatistics<-remove_outliers(ABstatistics)
-	BAstatistics<-remove_outliers(BAstatistics)
-	Astatistics<-remove_outliers(Astatistics)
-	Bstatistics<-remove_outliers(Bstatistics)
-	if((length(Astatistics)>1)&(length(Bstatistics)>1)&(length(BAstatistics)>1)&(length(ABstatistics)>1)){
-		diffs<-max(diffXY(ABstatistics,Bstatistics),diffXY(BAstatistics,Astatistics))
-		if(Test =="wc"){
-			pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
-		}else{
-			pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
+	if((dim(A)[1]>2)&(dim(B)[1]>2)){
+		SA<-stats.T2.single(A)
+		SAcov<-SA$cov
+		SAcenter<-SA$center
+		Astatistics<-SA$statistics
+		SB<-stats.T2.single(B)
+		SBcov<-SB$cov
+		SBcenter<-SB$center
+		Bstatistics<-SB$statistics		
+		AB<-sweep(A,2,SBcenter, "-" )
+		AB<-as.matrix(AB)
+		ABstatistics<-diag(AB%*%solve(SBcov)%*%(t(AB)))
+		BA<-sweep(B,2,SAcenter, "-" )
+		BA<-as.matrix(BA)
+		BAstatistics<-diag(BA%*%solve(SAcov)%*%(t(BA)))
+		ABstatistics<-remove_outliers(ABstatistics)
+		BAstatistics<-remove_outliers(BAstatistics)
+		Astatistics<-remove_outliers(Astatistics)
+		Bstatistics<-remove_outliers(Bstatistics)
+		if((length(Astatistics)>1)&(length(Bstatistics)>1)&(length(BAstatistics)>1)&(length(ABstatistics)>1)){
+			diffs<-max(diffXY(ABstatistics,Bstatistics),diffXY(BAstatistics,Astatistics))
+			if(Test =="wc"){
+				pval<-min(wilcox.test(ABstatistics,Bstatistics)$p.value,wilcox.test(BAstatistics,Astatistics)$p.value)
+			}else{
+				pval<-min(ks.test(ABstatistics,Bstatistics)$p.value,ks.test(BAstatistics,Astatistics)$p.value)
+			}
 		}
-	}
-	else{diffs<-NA;pval<-NA}
+		else{diffs<-NA;pval<-NA}
+	}else{diffs<-NA;pval<-NA}
 	cm<-paste(str_c(colnames(tdata)[W],collapse='\t'),diffs,pval,sep="\t")
 	return (cm)
 }
