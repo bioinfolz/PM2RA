@@ -81,6 +81,7 @@ diffXY <- function(X,Y)
 		yY<-ppval(Yppcub, xs)
 		yscub <- apply(cbind(yX, yY), 1, min)
 		aera<-integrate.xy(xs,yscub)
+		aera<-max(0,aera)
 	}
 	diff=1-aera
 	return(diff)
