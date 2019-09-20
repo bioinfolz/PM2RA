@@ -99,11 +99,12 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 
 
 RELEASE NOTES
-===
+==
 v1.0.2, 2019.06.17, adding Wilcoxon rank-sum test as an alternative test.<br>
 v1.0.0, 2018.12.01
 
-**License**<br>
+License
+==
 This project is covered under the Apache 2.0 License.
 
 
