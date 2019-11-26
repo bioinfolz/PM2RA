@@ -1,4 +1,4 @@
-# PM2CA
+# PM2RA
 Profile Monitoring for Microbial Community Alteration
 
 Version 1.0.2
@@ -21,11 +21,11 @@ R packages:<br>
 
 Script tested on Mac and Linux system.<br>
 
-*The average computation time of PM2CA for a dataset contains 100 features is 30 minutes (running on a Linux with 8 processors). 
+*The average computation time of PM2RA for a dataset contains 100 features is 30 minutes (running on a Linux with 8 processors). 
 
 USAGE<br>
 -----
-This PM2CA script is developed with two functional modules.<br>
+This PM2RA script is developed with two functional modules.<br>
 1. 2D scanning(2DScan):  scanning for pairwise association change among the microbial community between two conditions, and the two-component community alterations form a community alteration(CA) network, where the nodes represent microbiota and the edges represent the measure of the community alteration (or association changes) of the two connected microbiota by PM score. Hub microbiotas in the CA network are the ones with extensively altered associations between two compared conditions.<br>
 
 2. Multiple-dimensional search(MultiSearch):  where the PM score of any defined sub-community with two or more microbiotas could be calculated.<br>
@@ -34,7 +34,7 @@ This PM2CA script is developed with two functional modules.<br>
 -----
 
 **Seven** parameters should be set for 2DScan function<br>
-`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan Test-Type`<br>
+`Rscript PM2RA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name 2DScan Test-Type`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
 **Input Example:**<br>
 * Missing value is not allowed<br><br>
@@ -61,7 +61,7 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 7.  Statistic method: Kolmogorov-Smirnov test(ks,default) or Wilcoxon rank-sum test(wc)
 
 **Run Example**<br>
-`Rscript PM2CA.R Example.csv H D 0.1 2DscanExample 2DScan ks`<br>
+`Rscript PM2RA.R Example.csv H D 0.1 2DscanExample 2DScan ks`<br>
 
 
 MultiSearch usage<br>
@@ -69,7 +69,7 @@ MultiSearch usage<br>
 
 **Eight** parameters should be set for MultiSearch function. Except for those set for 2DScan, a microbiota list should be provided for MultiSearch.<br>
 
-`Rscript PM2CA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name MultiSearch Test-type micriobita.list`<br>
+`Rscript PM2RA.R abundance.table.csv ConditionA-Label ConditionB-Label prevalence.filter project.name MultiSearch Test-type micriobita.list`<br>
 1.  abundance table: the abundance table of microbiota in csv format, where the first colunm indicates the labels for samples from two conditions.<br><br>
 **Input Example:**<br>
 label	Bifidobacterium_animalis	Bifidobacterium_breve	Bacteroides_ovatus	Parabacteroides_distasonis<br>
@@ -95,7 +95,7 @@ D	0.000140154	0.000798875	0.041534494	0.01880393<br>
 8.  microbita.list: a plain text file provides a list of micriobita，where each line contains one microbiota.<br>
 
 **Run Example**<br>
-`Rscript PM2CA.R Example.csv H D 0.1 MultiSearchExample MultiSearch ks list.txt`<br>
+`Rscript PM2RA.R Example.csv H D 0.1 MultiSearchExample MultiSearch ks list.txt`<br>
 
 
 RELEASE NOTES

@@ -23,7 +23,7 @@ colnames(tt)=c("lable",seq(1,123))
 colnames(tc)=c("lable",seq(1,123))
 md=rbind(tc,tt)
 colnames(md)=c("label",row.names(case))
-write.table(md,paste(i,".table.4.PM2CA.txt",sep=""),row.names=F,col.names=T,quote=F,sep="\t")
+write.table(md,paste(i,".table.4.PM2RA.txt",sep=""),row.names=F,col.names=T,quote=F,sep="\t")
 }
 write.table(out,"sampling.record.txt",row.names=F,col.names=F,quote=F,sep="\t") ##50VS50 samples
 ###generating synthetic dataset by randomly sampling samples into case or control groups
@@ -31,7 +31,7 @@ write.table(out,"sampling.record.txt",row.names=F,col.names=F,quote=F,sep="\t") 
 
 ####Detecting association alteration
 
-###PM2CA
+###PM2RA
 sh pm.sh
 
 ####co-occurrence-based methods
@@ -132,7 +132,7 @@ write.table(sparcc.diff,out333,quote=F,sep="\t")
 ####Detecting association alteration
 
 ########result processing######
-#1. PM2CA
+#1. PM2RA
 out=NULL
 for(i in seq(1,100)){
 	data=read.table(paste(i,".iteration.2Dscan.res.txt",sep=""),head=T,sep="\t")

@@ -32,14 +32,14 @@ for(i in seq(1,666)){
 	df=rbind(temp,ct)
 	Disease=c(rep("cases",100),rep("control",100))
 	md=cbind(Disease,df)
-	write.table(md,paste(i,".table.4.PM2CA.txt",sep=""),row.names=F,col.names=T,quote=F,sep="\t")
+	write.table(md,paste(i,".table.4.PM2RA.txt",sep=""),row.names=F,col.names=T,quote=F,sep="\t")
 	write.table(t(temp),paste(i,".sampling.case.txt",sep=""),col.names=T,quote=F,sep="\t")
 	write.table(t(ct),paste(i,".sampling.control.txt",sep=""),col.names=T,quote=F,sep="\t")
 }
 ###generating synthetic dataset by exchange each pair of the OTU
 
 ####Detect association alteration
-1. run PM2CA
+1. run PM2RA
 2. run other methods:
 
 library(SpiecEasi)
@@ -145,7 +145,7 @@ write.table(sparcc.diff,out333,quote=F,sep="\t")
 
 
 ###result processing######
-#1. PM2CA
+#1. PM2RA
 data=read.table("simu.cor.diff.pvalue.txt")
 cmp=read.table("biom.filter.txt",head=T,row.names=1)
 bact=colnames(cmp)
@@ -169,10 +169,10 @@ for(i in seq(1,666)){
 	FNR=(70-s)/70
 	out=rbind(out,c(i,b1,b2,FNR))
 }
-write.table(out,"PM2CA.FNR.res.txt",row.names=F,quote=F,sep="\t")
+write.table(out,"PM2RA.FNR.res.txt",row.names=F,quote=F,sep="\t")
 
 ab=read.table("simu.cor.diff.pvalue.name.txt",head=TRUE)
-res=read.table("PM2CA.FNR.all.res.txt")
+res=read.table("PM2RA.FNR.all.res.txt")
 res=res[!duplicated(res),]
 res$name=apply(res,1,function(x){a=max(as.character(x[2]),as.character(x[3]));b=min(as.character(x[2]),as.character(x[3]));paste(a,b,sep=":")})
 
@@ -195,7 +195,7 @@ mean(res3$V4)
 FNR=c(res1$V4,res2$V4,res3$V4)
 label=c(rep("A",length(res1$V4)),rep("B",length(res2$V4)),rep("C",length(res3$V4)))
 df=data.frame(label,FNR)
-write.table(df,"PM2CA.FNR.stat.txt",quote=F,sep="\t",row.names=F)
+write.table(df,"PM2RA.FNR.stat.txt",quote=F,sep="\t",row.names=F)
 
 #2. Co-coccurrence-based methods
 data=read.table("simu.cor.diff.pvalue.name.txt",head=T)
