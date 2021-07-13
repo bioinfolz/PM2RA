@@ -11,7 +11,7 @@ Author and License<br>
 ===
 Author: Zhi Liu<br>
 
-Email: liuzhi@njum.edu.cn<br>
+Email: liuzhi@njmu.edu.cn<br>
 
 DEPENDENCIES
 ===
